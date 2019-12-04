@@ -1,0 +1,47 @@
+<form>
+  <div class="row">
+    <div class="col col-md-6" [formGroup]="eventForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Name" [formControl]="eventForm.controls['name']"
+          [ngClass]="{'is-valid': !eventForm.controls['name'].hasError('required') && eventForm.controls['name'].touched,
+          'is-invalid': eventForm.controls['name'].hasError('required') && eventForm.controls['name'].touched}">
+      </div>
+    </div>
+    <div class="col col-md-6" [formGroup]="eventForm">
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" placeholder="Description"
+          [formControl]="eventForm.controls['description']"
+          [ngClass]="{'is-valid': !eventForm.controls['description'].hasError('required') && eventForm.controls['description'].touched,
+          'is-invalid': eventForm.controls['description'].hasError('required') && eventForm.controls['description'].touched}">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-md-6" [formGroup]="eventForm">
+      <div class="form-group">
+        <label for="category">Category</label>
+        <ng-select placeholder="Select Category" [formControl]="eventForm.controls['category']" [items]="categories" bindLabel="name"
+          bindValue="value" [multiple]="false">
+        </ng-select>
+        <div class="invalid-feedback" *ngIf="!eventForm.controls['category'].valid" style="display: block;">
+          Please select category.
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-6" [formGroup]="eventForm">
+      <div class="form-group">
+        <label for="status">Status</label>
+        <ng-select placeholder="Select Status" [formControl]="eventForm.controls['status']" [items]="statuses" bindLabel="name"
+          bindValue="value" [multiple]="false">
+        </ng-select>
+        <div class="invalid-feedback" *ngIf="!eventForm.controls['status'].valid" style="display: block;">
+          Please select status.
+        </div>
+      </div>
+    </div>
+  </div>
+  <button *ngIf="!this.eventIndex && this.eventIndex !== 0" (click)="save()" class="btn btn-primary">Add</button>
+  <button *ngIf="this.eventIndex || this.eventIndex === 0" (click)="save()" class="btn btn-primary">Update</button>
+</form>

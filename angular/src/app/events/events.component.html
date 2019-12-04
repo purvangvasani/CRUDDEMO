@@ -1,0 +1,40 @@
+
+<div style="margin-bottom: 10px; text-align: right;">
+    <button class="btn btn-success" (click)="addEvent()">Add</button>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="!events || !events.length">
+            <tr style="width:100%;vertical-align:top">
+                <td class="table-header lightgray" colspan="10"
+                    style="text-align: center;">
+                    <b>No Posts Available</b>
+                </td>
+            </tr>
+        </tbody>
+        <tbody *ngIf="events && events.length">
+            <tr *ngFor="let item of events; let i=index">
+                <td>{{item.name || '-'}}</td>
+                <td>{{item.description || '-'}}</td>
+                <td>{{item.category || '-'}}</td>
+                <td>{{item.status || '-'}}</td>
+                <td style="text-align: center;cursor: pointer;">
+                    <div class="btn-group">
+                        <button class="btn btn-primary" (click)="editEvent(i)">Edit</button>
+                        <button class="btn btn-danger" (click)="removeEvent(i)">Remove</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
