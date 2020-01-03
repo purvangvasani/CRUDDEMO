@@ -4,7 +4,7 @@ var express = require('express');
 module.exports = function (app) {
   var apiRoutes = express.Router();
 
-  routes.EventRoutes(apiRoutes);
+  routes.PokemonRoutes(apiRoutes);
 
   app.use('/', apiRoutes);
 };

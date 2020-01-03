@@ -12,7 +12,7 @@ export class MainLayoutComponent implements OnInit {
 
   ngOnInit() {
     if (this.router.url === '/') {
-        this.router.navigate(['/events']);
+        this.router.navigate(['/pokemons']);
     }
   }
 

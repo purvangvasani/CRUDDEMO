@@ -1,0 +1,73 @@
+<form>
+  <div class="alert alert-danger" role="alert" *ngIf="apiErrorMessage">
+    Error: {{apiErrorMessage}}
+  </div>
+  <div class="row">
+    <div class="col col-md-6" [formGroup]="eventForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Name" [formControl]="eventForm.controls['name']"
+          [ngClass]="{'is-valid': !eventForm.controls['name'].hasError('required') && eventForm.controls['name'].touched,
+          'is-invalid': eventForm.controls['name'].hasError('required') && eventForm.controls['name'].touched}">
+      </div>
+    </div>
+    <div class="col col-md-6" [formGroup]="eventForm">
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" placeholder="Description" [formControl]="eventForm.controls['description']"
+          [ngClass]="{'is-valid': !eventForm.controls['description'].hasError('required') && eventForm.controls['description'].touched,
+          'is-invalid': eventForm.controls['description'].hasError('required') && eventForm.controls['description'].touched}">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-md-6" [formGroup]="eventForm">
+      <div class="form-group">
+        <label for="height">Height</label>
+        <input type="text" class="form-control" id="height" placeholder="Height" [formControl]="eventForm.controls['height']"
+          [ngClass]="{'is-valid': !eventForm.controls['height'].hasError('required') && eventForm.controls['height'].touched,
+          'is-invalid': eventForm.controls['height'].hasError('required') && eventForm.controls['height'].touched}">
+      </div>
+    </div>
+    <div class="col col-md-6" [formGroup]="eventForm">
+      <div class="form-group">
+        <label for="weight">Weight</label>
+        <input type="text" class="form-control" id="weight" placeholder="Weight" [formControl]="eventForm.controls['weight']"
+          [ngClass]="{'is-valid': !eventForm.controls['weight'].hasError('required') && eventForm.controls['weight'].touched,
+          'is-invalid': eventForm.controls['weight'].hasError('required') && eventForm.controls['weight'].touched}">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-md-6" [formGroup]="eventForm">
+      <div class="form-group">
+        <label for="image">Image</label>
+        <div class="custom-file">
+          <input #imageInput type="file" accept="image/*" (tap)="imageTouched()" (change)="processFile(imageInput)"
+            class="custom-file-input" id="validatedCustomFile" [ngClass]="{'is-valid': !eventForm.controls['imageName'].hasError('required') && !eventForm.controls['imagePath'].hasError('required') && !eventForm.controls['file'].hasError('required') && imageTouchedFlag,
+            'is-invalid': (eventForm.controls['imageName'].hasError('required') || eventForm.controls['imagePath'].hasError('required') || eventForm.controls['file'].hasError('required')) && imageTouchedFlag}">
+          <label class="custom-file-label" for="validatedCustomFile">{{(eventForm && eventForm.value && eventForm.value.imageName)?eventForm.value.imageName:'Choose image...'}}</label>
+          <div class="invalid-file" *ngIf="imageErrorMsg">
+            {{imageErrorMsg}}
+          </div>
+        </div>
+      </div>
+      <div class="card" *ngIf="eventForm && eventForm.value && eventForm.value.imagePath">
+        <img [src]="eventForm.value.imagePath" class="card-img-top" alt="...">
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button *ngIf="!this.eventIndex && this.eventIndex !== 0 && !loading" (click)="save()" class="btn btn-primary">Add
+        Pokemon</button>
+      <button *ngIf="(this.eventIndex || this.eventIndex === 0) && !loading" (click)="save()" class="btn btn-primary">Update
+        Pokemon</button>
+      <button class="btn btn-primary" type="button" disabled *ngIf="loading">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Updating...
+      </button>
+      <button (click)="cancel()" class="btn btn-danger">Cancel</button>
+    </div>
+  </footer>
+</form>

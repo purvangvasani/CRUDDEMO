@@ -1,0 +1,23 @@
+<form class="form-inline">
+    <label class="sr-only" for="inlineFormInputName2">Name</label>
+    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Search..." [(ngModel)]="searchKey"
+        [ngModelOptions]="{standalone: true}" (ngModelChange)="filter($event)">
+
+
+    <button (click)="manageItem()" class="btn btn-primary mb-2">Add Pokemon</button>
+</form>
+
+<label class="switch">
+    <input type="checkbox" (ngModelChange)="viewChanged($event)" [(ngModel)]="detailView">
+    <span class="slider round"></span>
+</label>
+
+<div class="alert alert-danger" role="alert" *ngIf="apiErrorMessage">
+    Error: {{apiErrorMessage}}
+</div>
+
+<div class="row" *ngIf="items && items.length">
+    <div class="col col-md-4 col-sm-4 col-xs-6" *ngFor="let item of items;let i = index;">
+        <app-card [item]="item" [itemIndex]="i" [detailView]="detailView" (onRemove)="removeItem($event)" (onSelect)="editItem($event)"></app-card>
+    </div>
+</div>

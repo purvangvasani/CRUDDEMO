@@ -1,35 +1,41 @@
 var createError = require('http-errors');
-const http = require('http');
 const express = require('express');
-const mongoose = require('mongoose');
+const http = require('http');
 const morgan = require('morgan');
-const path = require('path');
-const appRoutes = require('./app-routes');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const path = require('path');
+const cors = require('cors');
+const appRoutes = require('./app-routes');
+const helmet = require('helmet');
+const compression = require('compression');
 
+//Declarations
 const app = express();
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+// Compression
+app.use(compression());
 
-app.use(morgan('dev'));
+// Helmet
+app.use(helmet());
 
-app.use(bodyParser.json({
-  extended: true,
-  limit: '50mb'
-}));
+const corsOptions = {
+  exposedHeaders: ['x-filename', 'x-mimetype'],
+  origin: function (origin, callback) {
+    callback(null, true);
+  }
+};
+app.use(cors(corsOptions));
 
-app.use(bodyParser.urlencoded({
-  extended: true,
-  limit: '50mb'
-}));
+app.use(morgan('dev')); // Morgan Middleware
+app.use(bodyParser.json({ extended: true, limit: '50mb' })); // Body-parser middleware
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' })); // For parsing application/x-www-form-urlencoded
 
 appRoutes(app);
 
+// Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public/files')));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));
@@ -63,7 +69,6 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-var server;
 server = http.createServer(app);
 
 server.listen(3000, () => {
@@ -71,3 +76,4 @@ server.listen(3000, () => {
 });
 
 module.exports = app;
+

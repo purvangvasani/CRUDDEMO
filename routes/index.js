@@ -1,3 +1,3 @@
 module.exports = {
-  EventRoutes: require('./event/event')
+  PokemonRoutes: require('./pokemon/pokemon')
 }

@@ -1,0 +1,12 @@
+node_modules/
+./angular/node_modules/
+./sampleData/
+./.vscode/
+./dist/
+.DS_store
+.env
+package-lock.json
+.vscode/
+log/
+dist/
+dist.zip

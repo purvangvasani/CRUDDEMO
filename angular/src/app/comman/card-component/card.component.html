@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-body">
+        <h5 *ngIf="detailView" class="card-title">{{item.name || 'Name'}}</h5>
+        <p *ngIf="detailView" class="card-text">{{item.description || 'Description'}}</p>
+        <img [src]="item.imagePath" class="card-img-top" alt="...">
+        <ul class="" *ngIf="detailView">
+            <li class="">Height: {{item.height || 0}}</li>
+            <li class="">Weight: {{item.weight || 0}}</li>
+        </ul>
+        <span class="card-link" *ngIf="!detailView">{{item.name || 'Name'}}</span>
+        <span class="card-link" *ngIf="!detailView" style="float: right;">#{{item.position || 0}}</span>
+        <div class="btn-group" role="group" aria-label="Basic example" *ngIf="detailView">
+            <button class="btn btn-danger" *ngIf="item.status && item.status==='retrieved'" (click)="removeItem(itemIndex)">DELETE</button>
+            <button class="btn btn-primary" *ngIf="item.status && item.status==='retrieved'" (click)="editItem(itemIndex)">SELECT</button>
+            <button class="btn btn-primary" type="button" disabled *ngIf="item.status && item.status==='deleting'">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Deleting...
+            </button>
+        </div>
+    </div>
+</div>

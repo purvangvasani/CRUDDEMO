@@ -7,7 +7,7 @@ const routes: Routes = [
         path: '',
         component: MainLayoutComponent,
         children: [
-            { path: 'events', loadChildren: '../events/events.module#EventsModule' }
+            { path: 'pokemons', loadChildren: '../pokemon/pokemon.module#PokemonModule' }
         ]
     }
 ];
