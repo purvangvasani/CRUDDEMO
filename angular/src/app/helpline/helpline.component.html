@@ -1,0 +1,71 @@
+<div class="container">
+    
+    <div style="padding:10px">
+        <h2 style="text-align: center;">Helpline</h2>
+    </div>
+    
+    <div style="padding:10px">
+        <p style="font-size: 16px; text-align: justify;">
+            Maximizing the efforts to contain the spread of novel Corona Virus (Covid-19), 
+            <a style="color:darkorchid; cursor: pointer;" href="https://www.mohfw.gov.in/" target="_blank">Ministry of Health & Family Welfare</a> has provided these helpline numbers of <a style="color:darkorchid; cursor: pointer;">States</a> & <a style="color:darkorchid; cursor: pointer;">Union Territories (UTs)</a>.
+        </p>
+    </div>
+
+    <div style="text-align: center; padding:10px;">
+        <div>
+            <p style="font-size: 17px;">National Helpline Number</p>
+            <a style="font-size: 18px; color: darkorchid" href="tel:1075">1075</a> | <a style="font-size: 18px; color: darkorchid" href="tel:1800-112-545">1800-112-545</a>
+        </div>
+
+        <div>
+            <p style="font-size: 17px;">Central Helpline Number</p>
+            <a style="font-size: 18px; color: darkorchid" href="tel:+91-11-23978043">+91-11-23978043</a>  |  <a style="font-size: 18px; color: darkorchid" href="tel:+91-11-23978046">+91-11-23978046</a>
+        </div>
+
+        <div>
+            <p style="font-size: 17px;">Central Helpline Email</p>
+            <a style="font-size: 18px; color: darkorchid" href="mailto:ncov2019@gmail.com">ncov2019@gmail.com</a>
+        </div>
+    </div>
+
+    <div style="text-align: left; padding:10px">
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>State</th>
+                            <th>Helpline</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let state of statesArray">
+                            <td>{{state?.srNo}}</td>
+                            <td>{{state?.state}}</td>
+                            <td><a style="color:darkorchid" href="tel:{{state?.helpline}}">{{state?.helpline}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>Union Territory</th>
+                            <th>Helpline</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ut of UTArray">
+                            <td>{{ut?.srNo}}</td>
+                            <td>{{ut?.UTName}}</td>
+                            <td><a style="color:darkorchid" href="tel:{{ut?.helpline}}">{{ut?.helpline}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

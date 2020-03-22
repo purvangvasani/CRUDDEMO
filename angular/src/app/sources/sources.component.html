@@ -1,0 +1,31 @@
+<div class="container">
+    
+    <div style="padding:10px">
+        <h2 style="text-align: center;">Sources</h2>
+    </div>
+    
+    <div style="padding:10px">
+        <p style="font-size: 16px; text-align: justify;">
+            We refer these sources for the Covid-19 data in India. We then re-verify it with Government sites.
+        </p>
+    </div>
+
+    <div style="text-align: left; padding:10px">
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Sr.No</th>
+                        <th>Source Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let source of sourcesArray">
+                        <td>{{source?.srNo}}</td>
+                        <td><a style="color:darkorchid" target="_blank" href="{{source?.link}}">{{source?.sourceName}}</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+    
+    <div style="padding:10px">
+        <h2 style="text-align: center;">Test Centres across the Country</h2>
+    </div>
+    
+
+    <div style="text-align: left; padding:10px">
+        <table class="table">
+            <tbody>
+                <tr *ngFor="let TC of testCentresArray">
+                    <td>{{TC?.state}}</td>
+                    <td>
+                        <ul *ngFor="let centre of TC.testcentre">
+                            <li>{{centre}}</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
